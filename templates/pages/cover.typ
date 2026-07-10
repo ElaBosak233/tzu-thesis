@@ -72,8 +72,7 @@
     )
   }
 
-
-  pad(left: 5em, right: 1em)[
+  pad(left: 4em, right: 1em)[
     #set par(leading: 1em, spacing: 1em)
 
     #grid(
