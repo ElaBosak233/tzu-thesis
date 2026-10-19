@@ -6,8 +6,9 @@
   full: false,
   style: "gb-7714-2015-numeric",
   mapping: (:),
+  heading-weight: "regular",
 ) = {
-  page-heading[参考文献]
+  page-heading(weight: heading-weight)[参考文献]
 
   assert(
     bib != none,

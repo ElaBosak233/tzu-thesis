@@ -10,3 +10,11 @@ typst compile --font-path assets/fonts main.typ dist/main.pdf
 ```
 
 `thesis.with(graduation-year: 2027)` 可以将届别与 `date` 完成日期分别设置。
+
+文献综述使用独立入口，已依据同届 Word 原件校准题名、作者、同页摘要、三级标题、固定页眉与参考文献：
+
+```sh
+typst compile --font-path assets/fonts literature-review.typ dist/literature-review.pdf
+```
+
+编辑 `literature-review.typ` 即可填写内容。两种材料可以共用 `ref.bib`；正文默认只列实际引用的文献，示例为展示排版设置了 `bibliography-full: true`。统一接口为 `document.with(mode: "thesis")` / `document.with(mode: "literature-review")`，原有 `thesis.with(...)` 继续可用。参数、原版测量值和验证命令见[文献综述模式说明](docs/literature-review-plan.md)。
