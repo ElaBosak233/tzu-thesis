@@ -1,4 +1,5 @@
 #import "../fonts.typ": fonts, sizes
+#import "../layout.typ": line-heights, word-par
 
 #let authorization-confidential = state("authorization-confidential", false)
 
@@ -31,9 +32,8 @@
 
   v(18pt)
 
-  set par(first-line-indent: (amount: 2em, all: true), leading: 12pt)
-
   set text(font: (fonts.main, fonts.宋体), size: 13pt, lang: "zh")
+  show: word-par.with(height: line-heights.authorization)
 
   [本学位论文作者完全了解学校有关保留、使用学位论文的规定，同意学校保留并向国家有关部门或机构送交论文的复印件和电子版，允许论文被查阅和借阅。本人授权台州学院可以将本学位论文的全部或部分内容编入有关数据库进行检索，可以采用影印、缩印或扫描等复制手段保存和汇编本学位论文。
 

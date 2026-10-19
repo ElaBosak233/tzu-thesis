@@ -1,6 +1,7 @@
 #import "@preview/cuti:0.4.0": show-cn-fakebold
 
 #import "../fonts.typ": fonts, sizes
+#import "../layout.typ": word-grid, word-par, page-heading
 
 #let abstract-content = state("abstract", "")
 
@@ -19,21 +20,15 @@
 
   set page(numbering: "I")
 
-  align(center)[
-    #set par(leading: 1.5em)
-    #text(font: fonts.黑体, size: sizes.小四, weight: "bold")[摘#h(1em)要]
-  ]
+  show: word-par
+  set text(font: ((name: fonts.main, covers: "latin-in-cjk"), fonts.宋体), size: sizes.小四, lang: "zh")
 
-  v(18pt)
-
-  set text(font: (fonts.main, fonts.宋体), size: sizes.小四, lang: "zh", top-edge: 0.7em, bottom-edge: -0.3em)
-
-  set par(first-line-indent: (amount: 2em, all: true), leading: 1em)
+  page-heading(weight: "bold", before: 0pt, outlined: false)[摘#h(1em)要]
 
   context abstract-content.final()
 
-  block(above: 1.5 * 1.5em, below: 1.5 * 1.5em)[
-    #set par(first-line-indent: (amount: 0pt, all: true), leading: 1em)
+  block(above: 1.5 * word-grid, below: 1.5 * word-grid)[
+    #set par(first-line-indent: 0pt)
     #text(font: fonts.黑体, size: sizes.小四, weight: "bold")[关键词：]
     #text(font: (fonts.main, fonts.宋体), size: sizes.小四)[#context abstract-keywords.final()]
   ]

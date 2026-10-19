@@ -1,4 +1,5 @@
 #import "../fonts.typ": fonts, sizes
+#import "../layout.typ": word-grid, line-heights, word-par, page-heading
 
 #let commitment-signature = state("commitment-signature", none)
 
@@ -11,20 +12,14 @@
 #let commitment-page(
   date,
 ) = {
-  v(12pt)
+  page-heading(size: sizes.小二, height: line-heights.large, before: 0pt, after: 3 * word-grid)[诚信承诺书]
 
-  align(center)[
-    #set par(leading: 1.5em)
-    #heading(numbering: none)[诚信承诺书]
-  ]
-
-  v(18pt)
-
-  set text(font: fonts.仿宋, size: sizes.三号, lang: "zh", top-edge: "ascender", bottom-edge: "descender")
+  set text(font: fonts.仿宋, size: sizes.三号, lang: "zh")
+  show: word-par.with(height: line-heights.large, indent: 0pt)
 
   [本人郑重承诺：]
 
-  set par(first-line-indent: (amount: 2em, all: true), leading: 1em)
+  set par(first-line-indent: (amount: 2em, all: true))
 
   [
     现提交的毕业设计（论文）系本人独立完成。毕业设计（论文）所使用的相关资料、数据、观点等均真实可靠，文中所有引用的他人观点、材料、数据、图表均已注释说明来源，无抄袭、剽窃或不正当引用他人学术观点、思想、学术成果和伪造、篡改数据的情况。

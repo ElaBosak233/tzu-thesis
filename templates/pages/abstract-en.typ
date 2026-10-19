@@ -1,4 +1,5 @@
 #import "../fonts.typ": fonts, sizes
+#import "../layout.typ": word-grid, line-heights, word-par, page-heading
 
 #let abstract-en-content = state("abstract-en", "")
 
@@ -15,21 +16,15 @@
 #let abstract-en-page() = {
   set page(numbering: "I")
 
-  align(center)[
-    #set par(leading: 1.5em)
-    #text(font: fonts.main, size: sizes.四号, weight: "bold")[Abstract]
-  ]
-
-  v(18pt)
-
   set text(font: fonts.main, size: sizes.小四, lang: "en")
+  show: word-par.with(indent: 2.5em)
 
-  set par(first-line-indent: (amount: 2.5em, all: true), leading: 1em)
+  page-heading(size: sizes.四号, font: fonts.main, weight: "bold", height: line-heights.large, before: 0pt, outlined: false)[Abstract]
 
   context abstract-en-content.final()
 
-  block(above: 1.5 * 1.5em, below: 1.5 * 1.5em)[
-    #set par(first-line-indent: (amount: 0pt, all: true), leading: 1em)
+  block(above: 1.5 * word-grid, below: 1.5 * word-grid)[
+    #set par(first-line-indent: 0pt)
     #text(size: sizes.小四, weight: "bold")[Keywords: ]
     #text(
       size: sizes.小四,

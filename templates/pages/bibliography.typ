@@ -1,4 +1,5 @@
 #import "../fonts.typ": fonts, sizes
+#import "../layout.typ": line-heights, word-par, page-heading
 
 #let bibliography-page(
   bib: none,
@@ -6,15 +7,7 @@
   style: "gb-7714-2015-numeric",
   mapping: (:),
 ) = {
-  align(center)[
-    #set text(
-      font: fonts.黑体,
-      size: sizes.小四,
-    )
-    #v(1.5em)
-    #heading(numbering: none)[参考文献]
-    #v(1.5em)
-  ]
+  page-heading[参考文献]
 
   assert(
     bib != none,
@@ -50,11 +43,11 @@
   }
 
   show grid.cell.where(x: 0): cell => {
-    text(font: fonts.宋体, size: sizes.小五)[#cell]
+    text(font: (fonts.main, fonts.宋体), size: sizes.小五)[#cell]
   }
 
   show grid.cell.where(x: 1): it => {
-    set text(font: fonts.宋体, size: sizes.小五)
+    set text(font: ((name: fonts.main, covers: "latin-in-cjk"), fonts.宋体), size: sizes.小五)
 
     // 后续的操作是对 string 进行的。
     let ittext = to-string(it)
@@ -167,8 +160,8 @@
     }
   }
 
-  set par(leading: 0.65em, spacing: 0.65em)
-  set text(lang: "zh", top-edge: "ascender", bottom-edge: "descender")
+  set text(font: (fonts.main, fonts.宋体), size: sizes.小五, lang: "zh")
+  show: word-par.with(height: line-heights.single, indent: 0pt)
 
   bib(
     title: none,

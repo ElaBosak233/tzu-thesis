@@ -1,40 +1,17 @@
-#import "@preview/cuti:0.4.0": show-cn-fakebold
-
 #import "../fonts.typ": fonts, sizes
+#import "../layout.typ": word-grid, line-heights, word-par, page-heading
 
 #let toc = {
-  show: show-cn-fakebold
-
   set page(numbering: "I")
+  set text(font: ((name: fonts.main, covers: "latin-in-cjk"), fonts.宋体), size: sizes.小四)
+  show: word-par.with(indent: 0pt, justify: false)
 
-  show outline: it => {
-    set par(
-      leading: 1.5em,
-      spacing: 0.5em,
-    )
+  // 目录条目采用下方的基线行框，补偿与普通段落不同的首行位置。
+  page-heading(size: sizes.小二, height: line-heights.large, before: 0pt, after: 1.5 * word-grid + 4.2pt, outlined: false)[目#h(1em)录]
 
-    align(center)[
-      #block(above: 1.5 * 1.5em, below: 1.5 * 1.5em)[
-        #set text(
-          font: fonts.黑体,
-          size: sizes.小二,
-        )
-        #text(size: 16pt, weight: "bold")[目#h(1em)录]
-
-      ]
-    ]
-
-    it
-  }
-
-  show outline.entry: it => {
-    it
-  }
-
-  // 这里更改 top-edge 和 bottom-edge 会影响目录中的 ...
-  set text(font: (fonts.main, fonts.宋体), size: sizes.小四, top-edge: 1em, bottom-edge: 0em)
-
-  set par(leading: 1em)
-
-  outline(depth: 3, title: none)
+  // 引导点由 repeat 排版，使用以基线为下边界的行框才能与文字对齐。
+  show outline.entry: set text(top-edge: 1em, bottom-edge: 0pt)
+  show outline.entry: set par(leading: line-heights.body - sizes.小四)
+  show outline.entry: set block(above: line-heights.body - sizes.小四, below: 0pt)
+  outline(depth: 3, title: none, indent: 21pt)
 }

@@ -1,4 +1,5 @@
 #import "../fonts.typ": fonts, sizes
+#import "../layout.typ": line-heights, word-par, page-heading
 
 #let acknowledgement-content = state("acknowledgement", "")
 
@@ -9,20 +10,8 @@
 }
 
 #let acknowledgement-page() = {
-  set text(font: fonts.宋体, size: sizes.小四)
-
-  show heading.where(level: 1): set text(font: fonts.黑体, size: sizes.小三)
-
-  show heading.where(level: 1): set heading(numbering: none)
-
-  [
-    #align(center)[
-      #v(1.5em)
-      #heading(numbering: none)[谢#h(1em)辞]
-      #v(1.5em)
-    ]
-
-    #set par(first-line-indent: (amount: 2em, all: true))
-    #context acknowledgement-content.final()
-  ]
+  set text(font: ((name: fonts.main, covers: "latin-in-cjk"), fonts.宋体), size: sizes.小四)
+  show: word-par
+  page-heading(size: sizes.小三, height: line-heights.large)[谢#h(1em)辞]
+  context acknowledgement-content.final()
 }

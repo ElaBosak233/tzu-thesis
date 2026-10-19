@@ -11,6 +11,7 @@
   student: "张三",
   advisor: "李四",
   second-advisor: "王五",
+  graduation-year: 2027,
   bibliography: bibliography.with("ref.bib"),
 )
 

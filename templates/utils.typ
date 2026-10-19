@@ -1,18 +1,16 @@
 #import "fonts.typ": fonts, sizes
+#import "layout.typ": line-heights, word-par
 
 #let three-line-table(
   columns: 3,
   header: (),
   ..body,
 ) = {
-  set text(
-    top-edge: 0.9em,
-    bottom-edge: 0em,
-  )
+  show: word-par.with(height: line-heights.single, indent: 0pt, justify: false)
   table(
     columns: (1fr,) * columns, // 自动占满 100% 宽度并平分列
     stroke: none,
-    inset: (x: 8pt, y: 10pt),
+    inset: (x: 4pt, y: 7.8pt),
 
     align: (col, row) => {
       if row == 0 {

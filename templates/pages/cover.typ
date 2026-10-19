@@ -1,6 +1,7 @@
 #import "@preview/cuti:0.4.0": show-fakebold
 
 #import "../fonts.typ": fonts, sizes
+#import "../layout.typ": line-edges, line-heights
 
 #let cover(
   title,
@@ -12,132 +13,66 @@
   advisor,
   second-advisor,
   date,
+  graduation-year: none,
 ) = {
+  let year = if graduation-year == none { date.year() } else { graduation-year }
   show: show-fakebold
-
   set page(numbering: none)
+  set text(overhang: false)
+  set par(justify: false, first-line-indent: 0pt, leading: 0pt, spacing: 0pt)
 
-  image("/assets/vi/tzu-logo.png", width: 2.85cm)
+  // 坐标取自原版 Word 导出的封面，均换算到正文区域的左上角。
+  // 固定封面各区域的位置，避免正文行距或字体设置改变封面留白。
+  block(width: 100%, height: 100%, breakable: false)[
+    #place(top + left, dx: 85.05pt - 3cm, dy: 77.27pt - 2.5cm,
+      image("/assets/vi/tzu-logo.png", width: 80.85pt))
+    #place(top + left, dx: 168.4pt - 3cm, dy: 178pt - 2.5cm,
+      image("/assets/vi/tzu-text.svg", width: 9.5cm))
 
-  v(0.4cm)
+    #place(top + left, dx: 132.11pt - 3cm, dy: 288.17pt - 2.5cm,
+      box(scale(x: 200%, reflow: true,
+        text(font: fonts.华文新魏, size: sizes.一号, weight: "bold",
+          tracking: 2pt, top-edge: 0pt, bottom-edge: 0pt)[本科毕业设计])))
+    #place(top + left, dx: 251.93pt - 3cm, dy: 335.96pt - 2.5cm,
+      box(text(font: fonts.黑体, size: sizes.二号, weight: "bold",
+        tracking: 0.32pt, top-edge: 0pt, bottom-edge: 0pt)[（#year#h(6pt)届）]))
 
-  align(center)[
-    #image("/assets/vi/tzu-text.svg", width: 9.5cm)
+    #place(top + left, dx: 134.56pt - 3cm,
+      dy: 450.96pt - (line-heights.large / 2 + 0.34 * sizes.三号) - 2.5cm,
+      block(width: 380.96pt)[
+        #set text(size: sizes.三号, ..line-edges(line-heights.large))
+        #set align(left)
 
-    #scale(x: 200%, y: 200%, reflow: true)[
-      #scale(y: 50%, reflow: true)[
-        #text(font: fonts.华文新魏, size: sizes.一号, weight: "bold", tracking: 1.5pt)[本科毕业设计]
-      ]
-    ]
+        // 宋体标签和楷体填写内容共用基线；每行 31.2pt。
+        // 长内容自动增高该行，后面的字段随之下移。
+        #let info-row(label, value, key-width: 64pt) = grid(
+          columns: (key-width, 1fr),
+          align: top,
+          column-gutter: 0pt,
+          text(font: fonts.宋体, label),
+          block(width: 100%, below: 0pt,
+            stroke: (bottom: 0.72pt + black),
+            // 下划线中心在基线下方 2.28pt，不改变行高。
+            outset: (bottom: -7.88pt),
+          )[
+            #set text(font: (fonts.main, fonts.楷体))
+            #set align(center)
+            #box(width: 0pt, height: 0pt)#value
+          ],
+        )
 
-    #text(font: fonts.黑体, size: sizes.二号, weight: "bold")[（#date.year()届）]
-  ]
-
-  v(2.5cm)
-
-  let info-key(
-    font: fonts.宋体,
-    size: sizes.小三,
-    body,
-  ) = {
-    rect(
-      inset: (x: 0pt, bottom: 1pt),
-      stroke: none,
-      text(
-        font: font,
-        size: size,
-        body,
-      ),
-    )
-  }
-
-  let info-value(
-    font: (fonts.main, fonts.楷体),
-    size: sizes.小三,
-    body,
-  ) = {
-    set align(center)
-    set par(leading: 0.5em)
-    rect(
-      width: 100%,
-      inset: (x: 0pt, bottom: 1pt),
-      stroke: (bottom: 0.5pt + black),
-      text(
-        font: font,
-        size: size,
-        top-edge: "ascender",
-        bottom-edge: "descender",
-        body,
-      ),
-    )
-  }
-
-  pad(left: 4em, right: 1em)[
-    #set par(leading: 1em, spacing: 1em)
-
-    #grid(
-      columns: (auto, 1fr),
-      align: bottom,
-      gutter: 5pt,
-      info-key[题#h(2em)目], info-value[#title],
-    )
-
-    #grid(
-      columns: (auto, 1fr),
-      gutter: 5pt,
-      align: bottom,
-      info-key[学#h(2em)院], info-value[#school],
-    )
-
-    #grid(
-      columns: (auto, 1fr),
-      gutter: 5pt,
-      align: bottom,
-      info-key[专#h(2em)业], info-value[#major],
-    )
-
-    #grid(
-      columns: (auto, 1fr),
-      gutter: 5pt,
-      align: bottom,
-      info-key[班#h(2em)级], info-value[#class],
-    )
-
-    #grid(
-      columns: (auto, 1fr),
-      gutter: 5pt,
-      align: bottom,
-      info-key[学#h(2em)号], info-value[#uid],
-    )
-
-    #grid(
-      columns: (auto, 1fr),
-      gutter: 5pt,
-      align: bottom,
-      info-key[学生姓名], info-value[#student],
-    )
-
-    #grid(
-      columns: (auto, 1fr),
-      gutter: 5pt,
-      align: bottom,
-      info-key[指导教师], info-value[#advisor],
-    )
-
-    #if second-advisor != none {
-      grid(
-        columns: (auto, 1fr),
-        gutter: 5pt,
-        align: bottom,
-        info-key[第二指导教师], info-value[#h(-2em)#second-advisor],
-      )
-    }
-
-    #grid(
-      columns: (auto, 1fr),
-      gutter: 5pt,
-      align: bottom,
-      info-key[完成日期], info-value[#date.display("[year]年[month]月")],
+        #info-row([题#h(2em)目], title)
+        #info-row([学#h(2em)院], school)
+        #info-row([专#h(2em)业], major)
+        #info-row([班#h(2em)级], class)
+        #info-row([学#h(2em)号], uid)
+        #info-row([学生姓名], student)
+        #info-row([指导教师], advisor)
+        #if second-advisor != none {
+          info-row([第二指导教师], second-advisor, key-width: 96pt)
+        }
+        #info-row([完成日期], date.display("[year]年[month]月"))
+      ],
     )
   ]
 }
