@@ -44,10 +44,10 @@
         #set align(left)
 
         // 宋体标签和楷体填写内容共用基线；每行 31.2pt。
-        // 长内容自动增高该行，后面的字段随之下移。
+        // 长内容自动增高该行；标签与末行基线及下划线对齐，后面的字段随之下移。
         #let info-row(label, value, key-width: 64pt) = grid(
           columns: (key-width, 1fr),
-          align: top,
+          align: bottom,
           column-gutter: 0pt,
           text(font: fonts.宋体, label),
           block(width: 100%, below: 0pt,

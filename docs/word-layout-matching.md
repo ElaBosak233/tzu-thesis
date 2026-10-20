@@ -74,7 +74,7 @@ bottom-edge: -height / 2 + 0.34em
 | 题目行下划线中心纵坐标 | 453.24 | 453.24 |
 | 下划线粗细 | 0.72 | 0.72 |
 
-第二导师标签为六字，其下划线起点单独后移；不填写第二导师时删除整行。长题目仍以 16pt 换行并增加该行高度，其余字段顺延；这时信息栏下半部会随实际内容移动，不再保持单行示例的固定纵坐标。封面说明气泡和提示框不属于填写后的封面内容，没有复制。
+第二导师标签为六字，其下划线起点单独后移；不填写第二导师时删除整行。长题目仍以 16pt 换行并增加该行高度，“题目”标签与标题末行共用基线，横线保持在该基线下方 2.28pt，其余字段顺延；这时信息栏下半部会随实际内容移动，不再保持单行示例的固定纵坐标。封面说明气泡和提示框不属于填写后的封面内容，没有复制。
 
 ## 说明与限制
 
@@ -89,8 +89,11 @@ bottom-edge: -height / 2 + 0.34em
 ```sh
 typst compile --font-path assets/fonts main.typ dist/main.pdf
 typst compile --root . --font-path assets/fonts tests/line-spacing.typ dist/line-spacing-test.pdf
+python3 tests/check-cover.py
 ```
 
 行距检查覆盖宋体、中英混排、Times New Roman、黑体及仿宋的八组字体字号组合，同时检查强制换行、自动换行、新段落、上标和简单行内公式。另编译长标题、多段正文及未提供第二导师的变体，并检查生成 PDF 的页码、目录链接和文字位置。
+
+封面对齐检查依赖 Python 的 `pdfplumber`，覆盖单行、两行和三行题目，以及未填写第二导师的情况，检查题目标签基线、横线位置和后续字段顺延。
 
 Typst 的概念定义可参考[段落行距文档](https://typst.app/docs/reference/model/par/#parameters-leading)；Word 倍数行距属性可参考[微软 Open XML 说明](https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.spacingbetweenlines.line)。
