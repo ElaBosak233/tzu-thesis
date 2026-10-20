@@ -32,7 +32,7 @@
 | --- | --- |
 | `templates/common/fonts.typ` | 字体名称与中文字号 |
 | `templates/common/layout.typ` | Word 网格校准值、固定行框、段落和页面标题工具 |
-| `templates/common/styles.typ` | 正文、三级标题、图表编号、题注与引用样式 |
+| `templates/common/styles.typ` | 正文、多级标题、公式间距、图表编号、题注与引用样式 |
 | `templates/common/bibliography.typ` | 两种材料共用的参考文献页面 |
 | `templates/common/utils.typ` | 正文内引用 `parencite` 与三线表 `three-line-table` |
 | `templates/common/patches.typ` | 列表排版补丁工具 |
