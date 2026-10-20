@@ -1,9 +1,8 @@
-#import "templates/document.typ": document
+#import "templates/literature-review/lib.typ": literature-review
 
 // 此文件是排版示例。请替换为自己的题目、摘要和正文。
 // 原版要求：1500 字以上、至少 20 篇参考文献、阅读至少两篇外文原文文献。
-#show: document.with(
-  mode: "literature-review",
+#show: literature-review.with(
   title: "毕业设计题目",
   student: "张三",
   advisor: "李四",

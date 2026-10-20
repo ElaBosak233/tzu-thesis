@@ -104,9 +104,9 @@ def main():
 
         source = temp / "variant.typ"
         output = temp / "variant.pdf"
-        prefix = '#import "/templates/document.typ": document\n'
-        source.write_text(prefix + '''#show: document.with(
-          mode: "literature-review", bibliography: bibliography.with("/ref.bib"),
+        prefix = '#import "/templates/literature-review/lib.typ": literature-review\n'
+        source.write_text(prefix + '''#show: literature-review.with(
+          bibliography: bibliography.with("/ref.bib"),
         )
         = 引言
         只引用一篇文献 @cai2021densenet。
@@ -123,8 +123,8 @@ def main():
           journal = {{测试刊物}}, year = {{2026}}, volume = {{1}}, pages = {{1--10}}
         }}''' for i in range(1, 41)]
         (temp / "pagination.bib").write_text("\n".join(entries))
-        source.write_text(prefix + '''#show: document.with(
-          mode: "literature-review", bibliography: bibliography.with("pagination.bib"),
+        source.write_text(prefix + '''#show: literature-review.with(
+          bibliography: bibliography.with("pagination.bib"),
           bibliography-full: true,
         )
         = 引言
@@ -139,11 +139,11 @@ def main():
             assert "[40]" in "\n".join(text[2:])
 
         for arguments, message in [
-            ('mode: "unknown"', "未知材料模式"),
-            ('mode: "literature-review"', "请为文献综述传入"),
-            ('mode: "literature-review", keywords: ("一个",)', "文献综述需要 3–6 个关键词"),
+            ('', "请为文献综述传入"),
+            ('keywords: "一个"', "keywords 应为包含 3–6 个关键词的数组"),
+            ('keywords: ("一个",)', "文献综述需要 3–6 个关键词"),
         ]:
-            source.write_text(prefix + f"#show: document.with({arguments})\n正文")
+            source.write_text(prefix + f"#show: literature-review.with({arguments})\n正文")
             compile_pdf(source, output, error=message)
     print("通过：Word 坐标、页眉页码、长题名、跨页摘要与文献、引用及参数检查。")
 

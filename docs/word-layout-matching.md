@@ -31,7 +31,7 @@
 
 ## Typst 的实现
 
-`templates/layout.typ` 集中保存校准值。普通文本使用固定总行框：
+`templates/common/layout.typ` 集中保存校准值。普通文本使用固定总行框：
 
 ```typ
 top-edge: height / 2 + 0.34em

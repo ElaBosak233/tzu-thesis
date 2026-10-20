@@ -1,5 +1,5 @@
-#import "../fonts.typ": fonts, sizes
-#import "../layout.typ": line-heights, word-par, page-heading
+#import "../../common/fonts.typ": fonts, sizes
+#import "../../common/layout.typ": line-heights, word-par, page-heading
 
 #let acknowledgement-content = state("acknowledgement", "")
 

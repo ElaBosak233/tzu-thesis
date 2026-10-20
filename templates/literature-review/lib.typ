@@ -1,8 +1,8 @@
 #import "@preview/cuti:0.4.0": show-cn-fakebold
-#import "fonts.typ": fonts, sizes
-#import "layout.typ": word-grid, line-heights, line-edges, word-par
-#import "styles.typ": academic-body
-#import "pages/bibliography.typ": bibliography-page
+#import "../common/fonts.typ": fonts, sizes
+#import "../common/layout.typ": word-grid, line-heights, line-edges, word-par
+#import "../common/styles.typ": academic-body
+#import "../common/bibliography.typ": bibliography-page
 
 // 来自 2027 文献综述原件，已通过 Word 保留网格的 PDF 校准。
 // 四号黑体单倍行距同样占两个 15.6pt 网格，因此一级标题仍是 31.2pt。

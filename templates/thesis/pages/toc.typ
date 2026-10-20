@@ -1,5 +1,5 @@
-#import "../fonts.typ": fonts, sizes
-#import "../layout.typ": word-grid, line-heights, word-par, page-heading
+#import "../../common/fonts.typ": fonts, sizes
+#import "../../common/layout.typ": word-grid, line-heights, word-par, page-heading
 
 #let toc = {
   set page(numbering: "I")

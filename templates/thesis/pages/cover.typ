@@ -1,7 +1,7 @@
 #import "@preview/cuti:0.4.0": show-fakebold
 
-#import "../fonts.typ": fonts, sizes
-#import "../layout.typ": line-edges, line-heights
+#import "../../common/fonts.typ": fonts, sizes
+#import "../../common/layout.typ": line-edges, line-heights
 
 #let cover(
   title,

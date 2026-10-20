@@ -1,8 +1,8 @@
 #import "fonts.typ": fonts, sizes
 #import "layout.typ": word-grid, line-heights, line-edges
 
-// 两种材料共用正文、编号、图表和引用规则；字号差异由各模式传入。
-// 行框及伪粗体由外层模式设置，首页和后置页面可继续独立覆盖样式。
+// 两种材料共用正文、编号、图表和引用规则；字号差异由各材料模板传入。
+// 行框及伪粗体由外层模板设置，首页和后置页面可继续独立覆盖样式。
 #let academic-body(
   heading-sizes: (sizes.四号, sizes.小四, sizes.五号),
   body,

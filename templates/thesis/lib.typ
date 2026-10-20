@@ -1,15 +1,15 @@
 #import "@preview/cuti:0.4.0": show-cn-fakebold
 
-#import "fonts.typ": fonts, sizes
-#import "layout.typ": word-grid, line-heights, line-edges, word-par
-#import "patches.typ": patch-enum-item, patch-list-item
-#import "styles.typ": academic-body
+#import "../common/fonts.typ": fonts, sizes
+#import "../common/layout.typ": word-grid, line-heights, line-edges, word-par
+#import "../common/patches.typ": patch-enum-item, patch-list-item
+#import "../common/styles.typ": academic-body
 #import "pages/cover.typ": cover
 #import "pages/authorization.typ": authorization, authorization-page
 #import "pages/abstract.typ": abstract, abstract-page
 #import "pages/abstract-en.typ": abstract-en, abstract-en-page
 #import "pages/toc.typ": toc
-#import "pages/bibliography.typ": bibliography-page
+#import "../common/bibliography.typ": bibliography-page
 #import "pages/acknowledgement.typ": acknowledgement, acknowledgement-page
 #import "pages/commitment.typ": commitment, commitment-page
 

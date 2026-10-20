@@ -1,5 +1,5 @@
-#import "../fonts.typ": fonts, sizes
-#import "../layout.typ": line-heights, word-par
+#import "../../common/fonts.typ": fonts, sizes
+#import "../../common/layout.typ": line-heights, word-par
 
 #let authorization-confidential = state("authorization-confidential", false)
 

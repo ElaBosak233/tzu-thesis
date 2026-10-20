@@ -1,5 +1,5 @@
-#import "../fonts.typ": fonts, sizes
-#import "../layout.typ": line-heights, word-par, page-heading
+#import "fonts.typ": fonts, sizes
+#import "layout.typ": line-heights, word-par, page-heading
 
 #let bibliography-page(
   bib: none,

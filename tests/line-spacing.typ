@@ -1,4 +1,4 @@
-#import "../templates/layout.typ": word-par, line-heights
+#import "../templates/common/layout.typ": word-par, line-heights
 
 // 验证自动换行和新段落没有因字体混排或上标产生额外间距。
 #let check-spacing(font, size, height) = {

@@ -1,9 +1,8 @@
-#import "../templates/document.typ": document
-#import "../templates/utils.typ": parencite, three-line-table
+#import "../templates/literature-review/lib.typ": literature-review
+#import "../templates/common/utils.typ": parencite, three-line-table
 
 // 多页集成样本：验证长题名、跨页摘要与正文、引用和图表。
-#show: document.with(
-  mode: "literature-review",
+#show: literature-review.with(
   title: "面向高校毕业设计管理的多源数据融合与智能分析系统的设计与实现及其相关技术研究进展",
   student: "测试学生",
   advisor: "测试导师",

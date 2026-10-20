@@ -1,7 +1,7 @@
 #import "@preview/cuti:0.4.0": show-cn-fakebold
 
-#import "../fonts.typ": fonts, sizes
-#import "../layout.typ": word-grid, word-par, page-heading
+#import "../../common/fonts.typ": fonts, sizes
+#import "../../common/layout.typ": word-grid, word-par, page-heading
 
 #let abstract-content = state("abstract", "")
 
